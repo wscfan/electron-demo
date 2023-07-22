@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  -webkit-app-region: drag;
+}
+
+textarea {
+  -webkit-app-region: no-drag;
+}
+
+body {
+  height: 100vh;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f00;
+  border-radius: 50%;
+  overflow: hidden;
+}
