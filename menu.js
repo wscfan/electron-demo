@@ -9,7 +9,7 @@ const createMenu = (win) => {
           label: "增加",
           click: () => {
             // console.log(win.webContents)
-            win.webContents.send("test")
+            win.webContents.send("test", 1)
           },
         },
       ],
