@@ -1,4 +1,5 @@
 const { BrowserWindow, app, ipcMain } = require("electron");
+const { createMenu } = require("./menu");
 const path = require("path");
 
 const createWindow = () => {
@@ -13,11 +14,13 @@ const createWindow = () => {
     webPreferences: {
       preload: path.resolve(__dirname, "preload.js"),
       // nodeIntegration: true
-    }
+    },
   });
   mainWindow.setAspectRatio(1);
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
   mainWindow.webContents.toggleDevTools();
+
+  createMenu(mainWindow);
 };
 
 app.whenReady().then(() => {
@@ -34,5 +37,5 @@ app.whenReady().then(() => {
 });
 
 ipcMain.on("saveFile", () => {
-  console.log("saveFile")
-})
+  console.log("saveFile");
+});
