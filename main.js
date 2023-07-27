@@ -36,6 +36,6 @@ app.whenReady().then(() => {
   });
 });
 
-ipcMain.on("saveFile", () => {
-  console.log("saveFile");
+ipcMain.on("saveFile", (event) => {
+  BrowserWindow.fromWebContents(event.sender).send("msg", "已经收到通知")
 });

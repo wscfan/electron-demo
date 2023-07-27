@@ -7,10 +7,20 @@ const { ipcRenderer, contextBridge } = require("electron");
 //   }
 // })
 
+// contextBridge.exposeInMainWorld("api", {
+//   counter: (callback) => {
+//     ipcRenderer.on("test", (event, value) => {
+//       callback(value);
+//     });
+//   },
+// });
+
 contextBridge.exposeInMainWorld("api", {
-  counter: (callback) => {
-    ipcRenderer.on("test", (event, value) => {
-      callback(value);
-    });
+  save: () => {
+    ipcRenderer.send("saveFile");
   },
+});
+
+ipcRenderer.on("msg", (event, message) => {
+  console.log(message);
 });
