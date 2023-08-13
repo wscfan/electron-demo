@@ -15,12 +15,19 @@ const { ipcRenderer, contextBridge } = require("electron");
 //   },
 // });
 
-contextBridge.exposeInMainWorld("api", {
-  save: () => {
-    ipcRenderer.send("saveFile");
-  },
-});
+// contextBridge.exposeInMainWorld("api", {
+//   save: () => {
+//     ipcRenderer.send("saveFile");
+//   },
+// });
 
-ipcRenderer.on("msg", (event, message) => {
-  console.log(message);
+// ipcRenderer.on("msg", (event, message) => {
+//   console.log(message);
+// });
+
+contextBridge.exposeInMainWorld("api", {
+  upload: async (callback) => {
+    const file = await ipcRenderer.invoke("selectFile");
+    callback(file);
+  },
 });

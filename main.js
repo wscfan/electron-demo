@@ -1,4 +1,4 @@
-const { BrowserWindow, app, ipcMain } = require("electron");
+const { BrowserWindow, app, ipcMain, dialog } = require("electron");
 const { createMenu } = require("./menu");
 const path = require("path");
 
@@ -37,5 +37,10 @@ app.whenReady().then(() => {
 });
 
 ipcMain.on("saveFile", (event) => {
-  BrowserWindow.fromWebContents(event.sender).send("msg", "已经收到通知")
+  BrowserWindow.fromWebContents(event.sender).send("msg", "已经收到通知");
+});
+
+ipcMain.handle("selectFile", async (event) => {
+  const { filePaths } = await dialog.showOpenDialog({});
+  return filePaths[0];
 });

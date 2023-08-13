@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <title>electron-demo</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="box">
-    <button id="btn">向主进程发送通知</button>
-    <!-- <div id="chrome"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>electron-demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="box">
+      <!-- <button id="btn">向主进程发送通知</button> -->
+      <!-- <div id="chrome"></div>
     <div id="electron"></div>
     <div id="node"></div> -->
-    <!-- <div id="counter">1</div> -->
-  </div>
-  <script src="renderer.js"></script>
-</body>
+      <!-- <div id="counter">1</div> -->
+      <input type="text" />
+      <button id="btn">上传文件</button>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
 </html>
