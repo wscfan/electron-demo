@@ -44,3 +44,7 @@ ipcMain.handle("selectFile", async (event) => {
   const { filePaths } = await dialog.showOpenDialog({});
   return filePaths[0];
 });
+
+ipcMain.on("updateTitle", (event, value) => {
+  BrowserWindow.fromWebContents(event.sender).title = value;
+});

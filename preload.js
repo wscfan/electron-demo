@@ -25,9 +25,15 @@ const { ipcRenderer, contextBridge } = require("electron");
 //   console.log(message);
 // });
 
+// contextBridge.exposeInMainWorld("api", {
+//   upload: async (callback) => {
+//     const file = await ipcRenderer.invoke("selectFile");
+//     callback(file);
+//   },
+// });
+
 contextBridge.exposeInMainWorld("api", {
-  upload: async (callback) => {
-    const file = await ipcRenderer.invoke("selectFile");
-    callback(file);
+  changeTitle: (newTitle) => {
+    ipcRenderer.send("updateTitle", newTitle);
   },
 });
