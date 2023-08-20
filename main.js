@@ -17,7 +17,7 @@ app.whenReady().then(() => {
     },
   });
 
-  // mainWindow.webContents.toggleDevTools();
+  mainWindow.webContents.toggleDevTools();
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
   // setTimeout(() => {
   //   mainWindow.center();
@@ -28,8 +28,19 @@ app.whenReady().then(() => {
   //   console.log(width);
   //   mainWindow.setBounds({ x: width / 2 - 150 }, true);
   // }, 1000);
-
-  ipcMain.addListener("clgMsg", () => {
-    console.log(Math.random());
-  });
+});
+ipcMain.on("clgMsg", () => {
+  console.log(Math.random());
+});
+ipcMain.on("changeSize", (event, width, height) => {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
+  win.setBounds(
+    {
+      x: Math.floor((screenWidth - width) / 2),
+      width,
+      height,
+    },
+    true
+  );
 });

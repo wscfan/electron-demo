@@ -7,6 +7,10 @@ contextBridge.exposeInMainWorld("api", {
     fs.writeFileSync("output/a.txt", "abc");
     ipcRenderer.send("clgMsg");
   },
+  changeSize(width, height) {
+    console.log(width, height);
+    ipcRenderer.send("changeSize", width, height);
+  },
 });
 
 // window.api = {
