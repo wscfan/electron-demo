@@ -1,33 +1,8 @@
 const { BrowserWindow, app, ipcMain, screen } = require("electron");
-const path = require("path");
+const { createWindow } = require("./window");
 
 app.whenReady().then(() => {
-  const mainWindow = new BrowserWindow({
-    width: 300,
-    height: 300,
-    alwaysOnTop: true,
-    x: 1180,
-    y: 100,
-    // fullscreen: true,
-    webPreferences: {
-      preload: path.resolve(__dirname, "preload.js"),
-      // contextIsolation: false,
-      // nodeIntegration: true,
-      sandbox: false,
-    },
-  });
-
-  mainWindow.webContents.toggleDevTools();
-  mainWindow.loadFile(path.resolve(__dirname, "index.html"));
-  // setTimeout(() => {
-  //   mainWindow.center();
-  //   mainWindow.setBounds({ width: 500, height: 500, x: 0, y: 0 }, true);
-  // }, 1000);
-  // setTimeout(() => {
-  //   const { width } = screen.getPrimaryDisplay().workAreaSize;
-  //   console.log(width);
-  //   mainWindow.setBounds({ x: width / 2 - 150 }, true);
-  // }, 1000);
+  createWindow();
 });
 ipcMain.on("clgMsg", () => {
   console.log(Math.random());
@@ -43,4 +18,17 @@ ipcMain.on("changeSize", (event, width, height) => {
     },
     true
   );
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform === "darwin") app.quit();
+});
+
+app.on("activate", () => {
+  if (
+    BrowserWindow.getAllWindows().length === 0 &&
+    process.platform === "darwin"
+  ) {
+    createWindow();
+  }
 });
