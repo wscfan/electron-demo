@@ -3,6 +3,7 @@ const { createWindow } = require("./window");
 
 app.whenReady().then(() => {
   createWindow();
+  require("./menu");
 });
 ipcMain.on("clgMsg", () => {
   console.log(Math.random());
