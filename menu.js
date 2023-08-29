@@ -30,6 +30,10 @@ const config = [
           });
         },
       },
+      {
+        type: "separator",
+      },
+      { role: isMac ? "close" : "quit", label: isMac ? "关闭" : "退出" },
     ],
   },
 ];
