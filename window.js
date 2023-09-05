@@ -28,6 +28,7 @@ const createWindow = () => {
   //   console.log(width);
   //   mainWindow.setBounds({ x: width / 2 - 150 }, true);
   // }, 1000);
+  return mainWindow;
 };
 
 module.exports = {

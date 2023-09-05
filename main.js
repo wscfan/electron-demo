@@ -1,9 +1,10 @@
 const { BrowserWindow, app, ipcMain, screen } = require("electron");
 const { createWindow } = require("./window");
+const { createMenu } = require("./menu");
 
 app.whenReady().then(() => {
-  createWindow();
-  require("./menu");
+  const win = createWindow();
+  createMenu(win);
 });
 ipcMain.on("clgMsg", () => {
   console.log(Math.random());

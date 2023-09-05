@@ -13,6 +13,10 @@ contextBridge.exposeInMainWorld("api", {
   },
 });
 
+ipcRenderer.on("changeTitle", ($event, value) => {
+  document.getElementById("title").innerHTML += value + "<br>";
+});
+
 // window.api = {
 //   btnClick() {
 //     fs.writeFileSync("a.txt", "abc");
