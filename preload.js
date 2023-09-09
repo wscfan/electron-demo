@@ -11,11 +11,16 @@ contextBridge.exposeInMainWorld("api", {
     console.log(width, height);
     ipcRenderer.send("changeSize", width, height);
   },
+  addTitle(cb) {
+    ipcRenderer.on("changeTitle", ($event, value) => {
+      cb(value);
+    });
+  },
 });
 
-ipcRenderer.on("changeTitle", ($event, value) => {
-  document.getElementById("title").innerHTML += value + "<br>";
-});
+// ipcRenderer.on("changeTitle", ($event, value) => {
+//   document.getElementById("title").innerHTML += value + "<br>";
+// });
 
 // window.api = {
 //   btnClick() {

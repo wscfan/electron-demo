@@ -6,4 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const height = Number(document.querySelector("[name=height]").value);
     window.api.changeSize(width, height);
   });
+  window.api.addTitle((title) => {
+    document.getElementById("title").innerHTML += title + "==>";
+  });
 });
