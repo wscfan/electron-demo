@@ -28,3 +28,7 @@ contextBridge.exposeInMainWorld("api", {
 //     ipcRenderer.send("clgMsg");
 //   },
 // };
+
+window.addEventListener("contextmenu", () => {
+  ipcRenderer.send("mainPopMenu");
+});
