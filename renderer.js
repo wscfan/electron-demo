@@ -6,4 +6,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const height = Number(document.querySelector("[name=height]").value);
     window.api.changeSize(width, height);
   });
+  const uploadBtn = document.querySelector("#uploadBtn");
+  uploadBtn.addEventListener("click", () => {
+    window.api.uploadFile();
+  });
 });

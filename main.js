@@ -34,3 +34,7 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+ipcMain.on("uploadFile", (event, value) => {
+  console.log(value);
+});

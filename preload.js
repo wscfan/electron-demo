@@ -11,6 +11,9 @@ contextBridge.exposeInMainWorld("api", {
     console.log(width, height);
     ipcRenderer.send("changeSize", width, height);
   },
+  uploadFile() {
+    ipcRenderer.send("uploadFile", 9999999999);
+  },
 });
 
 ipcRenderer.on("changeTitle", ($event, value) => {
