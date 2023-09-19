@@ -10,4 +10,8 @@ window.addEventListener("DOMContentLoaded", () => {
   uploadBtn.addEventListener("click", () => {
     window.api.uploadFile();
   });
+
+  window.api.addTitle((title) => {
+    document.getElementById("title").innerHTML += title + "==>";
+  });
 });

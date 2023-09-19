@@ -14,11 +14,16 @@ contextBridge.exposeInMainWorld("api", {
   uploadFile() {
     ipcRenderer.send("uploadFile", 9999999999);
   },
+  addTitle(cb) {
+    ipcRenderer.on("changeTitle", ($event, value) => {
+      cb(value);
+    });
+  },
 });
 
-ipcRenderer.on("changeTitle", ($event, value) => {
-  document.getElementById("title").innerHTML += value + "<br>";
-});
+// ipcRenderer.on("changeTitle", ($event, value) => {
+//   document.getElementById("title").innerHTML += value + "<br>";
+// });
 
 // window.api = {
 //   btnClick() {
@@ -26,3 +31,7 @@ ipcRenderer.on("changeTitle", ($event, value) => {
 //     ipcRenderer.send("clgMsg");
 //   },
 // };
+
+window.addEventListener("contextmenu", () => {
+  ipcRenderer.send("mainPopMenu");
+});

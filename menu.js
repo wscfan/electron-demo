@@ -1,5 +1,5 @@
 const createMenu = (win) => {
-  const { shell, Menu, BrowserWindow } = require("electron");
+  const { shell, Menu, BrowserWindow, dialog, app } = require("electron");
 
   const isMac = process.platform === "darwin";
 
@@ -25,11 +25,20 @@ const createMenu = (win) => {
         {
           label: "打开新窗口",
           accelerator: "CommandOrControl+Y",
-          click() {
-            new BrowserWindow({
-              width: 200,
-              height: 200,
+          async click() {
+            let res = await dialog.showMessageBox({
+              title: "网址跳转",
+              detail: "确定跳转吗？",
+              buttons: ["取消", "确认"],
+              checkboxLabel: "跳转协议。。。",
             });
+
+            if (res.response === 1) {
+              if (!res.checkboxChecked) {
+                return dialog.showErrorBox("温馨提示", "请勾选跳转协议");
+              }
+              shell.openExternal("https://www.baidu.com");
+            }
           },
         },
         {
@@ -41,7 +50,18 @@ const createMenu = (win) => {
         {
           type: "separator",
         },
-        { role: isMac ? "close" : "quit", label: isMac ? "关闭" : "退出" },
+        // { role: isMac ? "close" : "quit", label: isMac ? "关闭" : "退出" },
+        {
+          label: "退出",
+          async click() {
+            let res = await dialog.showMessageBox({
+              title: "wscfan",
+              detail: "确定退出吗？",
+              buttons: ["取消", "确定"],
+            });
+            if (res.response === 1) app.quit();
+          },
+        },
       ],
     },
   ];
