@@ -8,16 +8,22 @@
       content="default-src 'self'; script-src 'self'"
     />
     <title>electron-demo</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1 id="title"></h1>
-    <input name="width" type="text" />
+    <!-- <input name="width" type="text" />
     <input name="height" type="text" />
-    <button id="btn">调整</button>
-
-    <div><input type="file" id="uploadFile" /></div>
-    <div><button id="uploadBtn">上传</button></div>
+    <button id="btn">调整</button> -->
+    <!-- <div><button id="uploadBtn">上传</button></div> -->
     <!-- <button id="btn">点击</button> -->
+
+    <!-- <div><input type="button" id="uploadFile" value="选择文件" /></div> -->
+    <!-- <div id="container"></div> -->
+
+    <p><textarea name="" id="textInput" cols="30" rows="10"></textarea></p>
+    <p><button id="saveBtn">保存文件</button></p>
+
     <script src="renderer.js"></script>
   </body>
 </html>

@@ -19,6 +19,12 @@ contextBridge.exposeInMainWorld("api", {
       cb(value);
     });
   },
+  selectFilePreload() {
+    return ipcRenderer.invoke("selectFileMain");
+  },
+  saveInput(text) {
+    ipcRenderer.send("saveInput", text);
+  },
 });
 
 // ipcRenderer.on("changeTitle", ($event, value) => {

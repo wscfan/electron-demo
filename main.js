@@ -1,7 +1,8 @@
-const { BrowserWindow, app, ipcMain, screen } = require("electron");
+const { BrowserWindow, app, ipcMain, screen, dialog } = require("electron");
 const { createWindow } = require("./window");
 const { createMenu } = require("./menu");
 require("./contextmenu");
+require("./ipcMain");
 
 app.whenReady().then(() => {
   const win = createWindow();

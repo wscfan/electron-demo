@@ -1,0 +1,6 @@
+#container p {
+    padding: 5px;
+    border: 2px dashed teal;
+    word-break: break-all;
+    color: #333;
+}
