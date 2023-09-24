@@ -1,4 +1,4 @@
-const { BrowserWindow } = require("electron");
+const { BrowserWindow, shell } = require("electron");
 const path = require("path");
 
 const createWindow = () => {
@@ -19,6 +19,10 @@ const createWindow = () => {
 
   mainWindow.webContents.toggleDevTools();
   mainWindow.loadFile(path.resolve(__dirname, "index.html"));
+  mainWindow.webContents.setWindowOpenHandler((details) => {
+    shell.openExternal(details.url);
+    return { action: "deny" };
+  });
   // setTimeout(() => {
   //   mainWindow.center();
   //   mainWindow.setBounds({ width: 500, height: 500, x: 0, y: 0 }, true);
